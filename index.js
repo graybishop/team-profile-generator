@@ -3,6 +3,7 @@ import Engineer from "./lib/Engineer.js";
 import Intern from "./lib/Intern.js";
 import Manager from "./lib/Manager.js";
 import { createFullHTMl } from "./src/html-builder.js";
+import fs from 'fs';
 
 // test objects
 // const dude = new Engineer(`Bob`, 345, `fake@gmail.com`, `mastercoder`);
@@ -40,8 +41,26 @@ const openingQuestions = async () => {
             },
         ]
     );
+    console.log('Thanks for the info!');
     const leader = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
     employeesList.push(leader);
+
+    askForMoreEmployees();
+
+    // let moreEmployees = await inquirer.prompt([{
+    //     name: `more`,
+    //     type: 'confirm',
+    //     message: `Do you have more employees?`
+    // }]);
+
+    // let { more } = moreEmployees;
+
+    // more ? whatKindOfEmployee() : console.log(createFullHTMl(employeesList));
+};
+
+openingQuestions();
+
+const askForMoreEmployees = async () => {
 
     let moreEmployees = await inquirer.prompt([{
         name: `more`,
@@ -51,10 +70,8 @@ const openingQuestions = async () => {
 
     let { more } = moreEmployees;
 
-    more ? whatKindOfEmployee() : console.log(createFullHTMl(employeesList));
+    more ? whatKindOfEmployee() : writeHtmlFile()
 };
-
-openingQuestions();
 
 const whatKindOfEmployee = async () => {
     console.log('Great!');
@@ -71,19 +88,7 @@ const whatKindOfEmployee = async () => {
 
     let { type } = answers;
 
-    switch (type) {
-        case 'Engineer':
-            console.log('you chose Engineer');
-            break;
-        case 'Intern':
-            console.log('you chose Engineer');
-            break;
-        case 'Intern':
-            console.log('you chose Engineer');
-            break;
-        default:
-            throw console.error(`you cannot get here`);
-    }
+    inputEmployeeInfo(type);
 
 };
 
@@ -106,12 +111,38 @@ const inputEmployeeInfo = async (type) => {
         },
     ];
 
-    questions.push(
-        {
-            name: `officeNumber`,
-            type: `input`,
-            message: `Team Leader's Office Number:`
-        });
+    const engineerQuestion = { name: `github`, type: `input`, message: `Engineer's GitHub account:` };
+    const internQuestion = { name: `school`, type: `input`, message: `Intern's school:` };
+    const managerQuestion = { name: `officeNumber`, type: `input`, message: `Manager's Office Number:` };
 
+    switch (type) {
+        case 'Engineer':
+            questions.push(engineerQuestion);
+            break;
+        case 'Intern':
+            questions.push(internQuestion);
+            break;
+        case 'Manager':
+            questions.push(managerQuestion);
+            break;
+        default:
+            throw console.error(`you cannot get here either`);
+    }
+
+    console.log(`Okay, got it!`);
     let answers = await inquirer.prompt(questions);
+
+    let newEmployee = type == 'Engineer' ? new Engineer(answers.name, answers.id, answers.email, answers.github) :
+        type == 'Intern' ? new Intern(answers.name, answers.id, answers.email, answers.school) :
+            new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+
+    employeesList.push(newEmployee);
+
+    askForMoreEmployees();
 };
+
+const writeHtmlFile = () => {
+    fs.writeFile(`./dist/index.html`,createFullHTMl(employeesList),err =>{
+        err? console.error(err): console.log(`File created. Check /dist/.`)
+    })
+}
