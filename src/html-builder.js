@@ -7,7 +7,7 @@ const htmlOpening = () => {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dist/style/style.css">
+    <link rel="stylesheet" href="./style/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Team Profile</title>
 </head>
@@ -48,7 +48,7 @@ const addHTMLCard = (obj) => {
             misc = undefined;
             break;
         case `Engineer`:
-            misc = `GitHub: ${obj.github}`;
+            misc = `GitHub: <a href="https://github.com/${obj.github}">${obj.github}</a>`;
             break;
         case `Intern`:
             misc = `School: ${obj.school}`;
@@ -77,7 +77,7 @@ const addHTMLCard = (obj) => {
             </div>
             <div>
                 <p class="card-text">ID: ${id}</p>
-                <p class="card-text">Email: ${email}</p>
+                <p class="card-text">Email: <a href="mailto:${email}" target="_blank">${email}</a></p>
                 <p class="card-text">${misc}</p>
             </div>
         </div>
