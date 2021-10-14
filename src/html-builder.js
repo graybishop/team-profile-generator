@@ -12,9 +12,9 @@ const htmlOpening = () => {
     <title>Team Profile</title>
 </head>
 
-<body class="bg-dark text-light">
+<body class="">
     <header class="text-center">
-        <div class="bg-light text-dark fw-bolder">
+        <div class="bg-light text-primary fw-bolder p-4 mb-3">
             <h1>Team Profile</h1>
         </div>
     </header>
@@ -54,7 +54,7 @@ const addHTMLCard = (obj) => {
             misc = `School: ${obj.school}`;
             break;
         case `Manager`:
-            misc = `Office Number: ${obj.officeNumber}`;
+            misc = `Office #: ${obj.officeNumber}`;
             break;
 
         default:
@@ -67,13 +67,13 @@ const addHTMLCard = (obj) => {
             <div class="card-body p-4">
                 <div class="d-flex flex-row justify-content-between pb-2">
                     <h2 class="card-title fs-4 text-primary">${name}</h2>
-                    <span class="material-icons">
+                    <span class="material-icons text-primary">
                         ${role ==`Engineer`? `engineering` :
                             role ==`Intern`? `history_edu` : `cases`}
                     </span>
                 </div>
                 <div class="mb-2 border-bottom pb-2 border-primary">
-                    <h3 class="card-subtitle text-muted fs-5">${role}</h3>
+                    <h3 class="card-subtitle text-secondary fs-5">${role}</h3>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item card-text m-0 pb-1 fw-bold">ID: ${id}</>

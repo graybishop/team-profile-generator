@@ -5,8 +5,13 @@
 
 // 2. Include any default variable overrides here
 $enable-shadows: true;
-$primary: #052C65;
-$light: #D0E2FF;
+// $primary: #052C65;
+// $light: #D0E2FF;
+$primary: #FF6542;
+$light: #564154;
+$secondary: #779FA1;
+$body-bg: null;
+
 
 $list-group-bg: $light;
 
@@ -30,6 +35,15 @@ $list-group-bg: $light;
 // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "../node_modules/bootstrap/scss/utilities/api";
 
+
 .card{
     background-color: $light;
+}
+
+.list-group-item{
+    color: $gray-300;
+}
+
+body{
+    background-color: $gray-900;
 }
