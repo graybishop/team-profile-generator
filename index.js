@@ -5,16 +5,15 @@ import Manager from "./lib/Manager.js";
 import createFullHTMl from "./src/html-builder.js";
 import fs from 'fs';
 
-// test objects
-// const dude = new Engineer(`Bob`, 345, `fake@gmail.com`, `mastercoder`);
-// const dude2 = new Intern(`June`, 345, `fake@gmail.com`, `UCF`);
-// const dude3 = new Manager(`Pedguin`, 347, `fake@live.com`, 101);
-// let employees = [dude, dude2, dude3];
-// console.log(employees)
-
-//global that will hold all of the employees inputted
+/**
+ * Global Array for holding employees
+ */
 let employeesList = [];
 
+/**
+ * Prompts the user for team leader information, passes the information into a
+ * new Manager, then moves on to next prompt with askForMoreEmployees().
+ */
 const openingQuestions = async () => {
     console.log('Tell us about your Team Leader.');
     let answers = await inquirer.prompt(
@@ -46,33 +45,28 @@ const openingQuestions = async () => {
     employeesList.push(leader);
 
     askForMoreEmployees();
-
-    // let moreEmployees = await inquirer.prompt([{
-    //     name: `more`,
-    //     type: 'confirm',
-    //     message: `Do you have more employees?`
-    // }]);
-
-    // let { more } = moreEmployees;
-
-    // more ? whatKindOfEmployee() : console.log(createFullHTMl(employeesList));
 };
 
-openingQuestions();
-
+/**
+ * Prompts the user to confirm (Y/n) if they have more employees to add to their page.
+ * If the use answers yes, program moves onto whatKindOfEmployee(). If they say no, the program
+ * moves onto writeHTMLFile() and ends the prompts. 
+ */
 const askForMoreEmployees = async () => {
 
-    let moreEmployees = await inquirer.prompt([{
+    let answer = await inquirer.prompt([{
         name: `more`,
         type: 'confirm',
         message: `Do you have more employees?`
     }]);
 
-    let { more } = moreEmployees;
-
-    more ? whatKindOfEmployee() : writeHtmlFile()
+    answer.more ? whatKindOfEmployee() : writeHtmlFile(employeesList);
 };
 
+/**
+ * Prompts the user to choose their employee type, 
+ * then passes that type to the inputEmployeeInfo() function
+ */
 const whatKindOfEmployee = async () => {
     console.log('Great!');
     let answers = await inquirer.prompt([{
@@ -92,6 +86,11 @@ const whatKindOfEmployee = async () => {
 
 };
 
+/**
+ * Prompts the user for the information of the given type of employee, 
+ * then generates a new employee subclass instance based on that input.
+ * @param {'Engineer'|'Intern'|'Manager'} type Type of employee to ask about
+ */
 const inputEmployeeInfo = async (type) => {
     let questions = [
         {
@@ -141,8 +140,14 @@ const inputEmployeeInfo = async (type) => {
     askForMoreEmployees();
 };
 
-const writeHtmlFile = () => {
-    fs.writeFile(`./dist/index.html`,createFullHTMl(employeesList),err =>{
-        err? console.error(err): console.log(`File created. Check /dist/.`)
-    })
-}
+/**
+ * Reads the global Array employeesList to generate an HTML file in ./dist/. 
+ * Passes employeesList to createFullHTML for the string.
+ */
+const writeHtmlFile = (arr) => {
+    fs.writeFile(`./dist/index.html`, createFullHTMl(arr), err => {
+        err ? console.error(err) : console.log(`File created. Check /dist/.`);
+    });
+};
+
+openingQuestions();
