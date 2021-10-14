@@ -61,29 +61,29 @@ const addHTMLCard = (obj) => {
             throw console.error(`cant find a role for this person`);
     }
     return `
-<!-- card start -->
-<div class="col-sm-4">
-    <div class="card text-dark shadow mb-3">
-        <div class="card-body">
-            <div class="d-flex flex-row justify-content-between">
-                <h2 class="card-title">${name}</h2>
-                <span class="material-icons">
-                    ${role == `Engineer` ? `engineering` :
-            role == `Intern` ? `history_edu` : `cases`}
-                </span>
-            </div>
-            <div class="mb-3">
-                <h3 class="card-subtitle text-muted">${role}</h3>
-            </div>
-            <div>
-                <p class="card-text">ID: ${id}</p>
-                <p class="card-text">Email: <a href="mailto:${email}" target="_blank">${email}</a></p>
-                <p class="card-text">${misc}</p>
+    <!-- card start -->
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card text-dark shadow mb-3 h-100">
+            <div class="card-body p-4">
+                <div class="d-flex flex-row justify-content-between pb-2">
+                    <h2 class="card-title fs-4 text-primary">${name}</h2>
+                    <span class="material-icons">
+                        ${role ==`Engineer`? `engineering` :
+                            role ==`Intern`? `history_edu` : `cases`}
+                    </span>
+                </div>
+                <div class="mb-2 border-bottom pb-2 border-primary">
+                    <h3 class="card-subtitle text-muted fs-5">${role}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item card-text m-0 pb-1 fw-bold">ID: ${id}</>
+                    <li class=" list-group-item card-text m-0 fw-bold pb-1">Email: <a href="mailto:${email}">${email}</a></>
+                    <li class=" list-group-item card-text m-0 fw-bold pb-1">${misc}</>
+                </ul>
             </div>
         </div>
     </div>
-</div>
-<!-- card end -->
+    <!-- card end -->
 `;
 
 };
