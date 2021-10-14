@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import Engineer from "./lib/Engineer.js";
 import Intern from "./lib/Intern.js";
 import Manager from "./lib/Manager.js";
-import { createFullHTMl } from "./src/html-builder.js";
+import createFullHTMl from "./src/html-builder.js";
 import fs from 'fs';
 
 // test objects

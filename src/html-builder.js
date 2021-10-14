@@ -1,4 +1,4 @@
-const htmlOpening = () => {
+export const htmlOpening = () => {
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@ const htmlOpening = () => {
             `;
 };
 
-const htmlClosing = () => {
+export const htmlClosing = () => {
     return `
     </div>
     </div>
@@ -36,7 +36,7 @@ const htmlClosing = () => {
 </html>`;
 };
 
-const addHTMLCard = (obj) => {
+export const addHTMLCard = (obj) => {
     let name = obj.name;
     let id = obj.id;
     let email = obj.email;
@@ -44,9 +44,6 @@ const addHTMLCard = (obj) => {
     let misc;
 
     switch (role) {
-        case `Employee`:
-            misc = undefined;
-            break;
         case `Engineer`:
             misc = `GitHub: <a href="https://github.com/${obj.github}">${obj.github}</a>`;
             break;
@@ -58,7 +55,7 @@ const addHTMLCard = (obj) => {
             break;
 
         default:
-            throw console.error(`cant find a role for this person`);
+            throw Error('No person Found');
     }
     return `
     <!-- card start -->
@@ -68,8 +65,8 @@ const addHTMLCard = (obj) => {
                 <div class="d-flex flex-row justify-content-between pb-2">
                     <h2 class="card-title fs-4 text-primary">${name}</h2>
                     <span class="material-icons text-primary">
-                        ${role ==`Engineer`? `engineering` :
-                            role ==`Intern`? `history_edu` : `cases`}
+                        ${role == `Engineer` ? `engineering` :
+            role == `Intern` ? `history_edu` : `cases`}
                     </span>
                 </div>
                 <div class="mb-2 border-bottom pb-2 border-primary">
@@ -88,12 +85,20 @@ const addHTMLCard = (obj) => {
 
 };
 
-export const createFullHTMl = (arr) => {
-    let string = ''
-    string = string.concat(htmlOpening())
+/**
+ * Generates HTML doc text given an array of Employee subclass objects. 
+ * @param {Employee[]} arr An array of objects that extend Employee.
+ * @returns {string} Full text of an HTML page as a string, including cards for each employee in the array 
+ */
+const createFullHTMl = (arr) => {
+    arr || (() => { throw `No arguments given to function`; })();
+    let string = '';
+    string = string.concat(htmlOpening());
     arr.forEach(element => {
-        string = string.concat(addHTMLCard(element))
+        string = string.concat(addHTMLCard(element));
     });
-    string = string.concat(htmlClosing())
-    return string
-}
+    string = string.concat(htmlClosing());
+    return string;
+};
+
+export default createFullHTMl;
