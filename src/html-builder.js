@@ -1,5 +1,5 @@
 const htmlOpening = () => {
-    return`
+    return `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,11 +21,11 @@ const htmlOpening = () => {
     <main>
         <div id='cardHolder' class="container">
             <div class="row justify-content-center">
-            `
-}
+            `;
+};
 
 const htmlClosing = () => {
-    return`
+    return `
     </div>
     </div>
 </main>
@@ -33,35 +33,34 @@ const htmlClosing = () => {
 </footer>
 </body>
 
-</html>`
-}
+</html>`;
+};
 
 const addHTMLCard = (obj) => {
-    let name = obj.name
-    let id = obj.id
-    let email = obj.email
-    let role = obj.role
+    let name = obj.name;
+    let id = obj.id;
+    let email = obj.email;
+    let role = obj.role;
     let misc;
 
     switch (role) {
         case `Employee`:
-            misc = undefined
+            misc = undefined;
             break;
         case `Engineer`:
-            misc = `GitHub: ${obj.github}`
+            misc = `GitHub: ${obj.github}`;
             break;
         case `Intern`:
-            misc = `School: ${obj.school}`
+            misc = `School: ${obj.school}`;
             break;
         case `Manager`:
-            misc = `Office Number: ${obj.officeNumber}`
+            misc = `Office Number: ${obj.officeNumber}`;
             break;
-    
+
         default:
             throw console.error(`cant find a role for this person`);
-            break;
     }
-return `
+    return `
 <!-- card start -->
 <div class="col-sm-4">
     <div class="card text-dark shadow mb-3">
@@ -69,8 +68,8 @@ return `
             <div class="d-flex flex-row justify-content-between">
                 <h2 class="card-title">${name}</h2>
                 <span class="material-icons">
-                    ${role ==`Engineer`? `engineering` :
-                        role ==`Intern`? `history_edu` : `cases`}
+                    ${role == `Engineer` ? `engineering` :
+            role == `Intern` ? `history_edu` : `cases`}
                 </span>
             </div>
             <div class="mb-3">
@@ -85,6 +84,16 @@ return `
     </div>
 </div>
 <!-- card end -->
-`
-    
+`;
+
+};
+
+export const createFullHTMl = (arr) => {
+    let string = ''
+    string = string.concat(htmlOpening())
+    arr.forEach(element => {
+        string = string.concat(addHTMLCard(element))
+    });
+    string = string.concat(htmlClosing())
+    return string
 }
