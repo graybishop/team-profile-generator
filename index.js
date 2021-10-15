@@ -151,6 +151,6 @@ const writeHtmlFile = (arr) => {
     });
 };
 
-// openingQuestions(askForMoreEmployees);
+openingQuestions(askForMoreEmployees);
 
 export{whatKindOfEmployee, writeHtmlFile, inputEmployeeInfo,askForMoreEmployees}
