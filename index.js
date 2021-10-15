@@ -12,9 +12,10 @@ let employeesList = [];
 
 /**
  * Prompts the user for team leader information, passes the information into a
- * new Manager, then moves on to next prompt with askForMoreEmployees().
+ * new Manager, then moves on to next prompt with continuesFn.
+ * @param {function} continuesFn The next function in the chain of user input. 
  */
-const openingQuestions = async () => {
+const openingQuestions = async (continuesFn) => {
     console.log('Tell us about your Team Leader.');
     let answers = await inquirer.prompt(
         [
@@ -44,7 +45,7 @@ const openingQuestions = async () => {
     const leader = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
     employeesList.push(leader);
 
-    askForMoreEmployees();
+    continuesFn();
 };
 
 /**
@@ -150,4 +151,6 @@ const writeHtmlFile = (arr) => {
     });
 };
 
-openingQuestions();
+// openingQuestions(askForMoreEmployees);
+
+export{whatKindOfEmployee, writeHtmlFile, inputEmployeeInfo,askForMoreEmployees}
