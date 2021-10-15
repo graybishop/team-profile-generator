@@ -28,8 +28,5 @@
   "devDependencies": {
     "jest": "^27.2.5"
   },
-  "type": "module",
-  "jest": {
-    "verbose": true
-  }
+  "type": "module"
 }

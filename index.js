@@ -62,6 +62,7 @@ const askForMoreEmployees = async () => {
     }]);
 
     answer.more ? whatKindOfEmployee() : writeHtmlFile(employeesList);
+    return answer.more
 };
 
 /**
@@ -151,6 +152,6 @@ const writeHtmlFile = (arr) => {
     });
 };
 
-openingQuestions(askForMoreEmployees);
+// openingQuestions(askForMoreEmployees);
 
-export{whatKindOfEmployee, writeHtmlFile, inputEmployeeInfo,askForMoreEmployees}
+export {whatKindOfEmployee, writeHtmlFile, inputEmployeeInfo,askForMoreEmployees}
