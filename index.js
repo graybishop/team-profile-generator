@@ -1,3 +1,5 @@
 import myPrompts from "./src/myPrompts.js";
 
-myPrompts.openingQuestions()
+let prompt = new myPrompts()
+
+prompt.openingQuestions()

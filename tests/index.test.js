@@ -1,3 +1,9 @@
+it('placeholdertest', () => {
+    
+});
+
+/*
+
 // import * as info from "team-profile-generator";
 import { expect, jest } from "@jest/globals";
 import inquirer from "inquirer";
@@ -16,6 +22,9 @@ describe('employee should return something', () => {
         expect(employee.getRole()).toBe('Employee')
     });
 });
+*/
+
+
 //TODO: CONVERT TO OBJECT
 // jest.mock("../index.js", () => {
 //     return {
