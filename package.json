@@ -26,6 +26,7 @@
     "inquirer": "^8.2.0"
   },
   "devDependencies": {
+    "eslint": "^8.0.1",
     "jest": "^27.2.5"
   },
   "type": "module"
