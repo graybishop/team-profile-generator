@@ -1,6 +1,6 @@
-import { describe, expect } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 import { htmlOpening, htmlClosing, addHTMLCard } from "../src/html-builder.js";
-import createFullHTMl from "../src/html-builder.js";
+import {createFullHTMl} from "../src/html-builder.js";
 
 describe(`HTML Builders`, () => {
     describe(`htmlOpening`, () => {

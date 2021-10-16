@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import Engineer from "../lib/Engineer.js";
 import Intern from "../lib/Intern.js";
 import Manager from "../lib/Manager.js";
-import createFullHTMl from "./html-builder.js";
+import { createFullHTMl } from "./html-builder.js";
 import fs from 'fs';
 
 
@@ -10,11 +10,11 @@ import fs from 'fs';
  * guides user through interface
  */
 class myPrompts {
-    constructor(){
+    constructor() {
         /**
          * Array for holding employees
          */
-        this.employeesList =[]
+        this.employeesList = [];
     }
 
 
@@ -132,7 +132,7 @@ class myPrompts {
                 questions.push(managerQuestion);
                 break;
             default:
-                throw console.error(`you cannot get here either`);
+                throw 'Employee Type Given Invalid: Default of switch statement';
         }
 
         console.log(`Okay, got it!`);
@@ -153,9 +153,8 @@ class myPrompts {
     * Passes employeesList to createFullHTML for the string.
     */
     writeHtmlFile(arr) {
-        fs.writeFile(`./dist/index.html`, createFullHTMl(arr), err => {
-            err ? console.error(err) : console.log(`File created. Check /dist/.`);
-        });
+        fs.writeFile(`./dist/index.html`, createFullHTMl(arr), (err) => { err ? console.error(err) : console.log(`File created. Check ./dist/index.html`); });
+        return null;
     }
 
 }

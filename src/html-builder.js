@@ -90,7 +90,7 @@ export const addHTMLCard = (obj) => {
  * @param {Employee[]} arr An array of objects that extend Employee.
  * @returns {string} Full text of an HTML page as a string, including cards for each employee in the array 
  */
-const createFullHTMl = (arr) => {
+export const createFullHTMl = (arr) => {
     arr || (() => { throw `No arguments given to function`; })();
     let string = '';
     string = string.concat(htmlOpening());
@@ -101,4 +101,4 @@ const createFullHTMl = (arr) => {
     return string;
 };
 
-export default createFullHTMl;
+export default { addHTMLCard, createFullHTMl}
