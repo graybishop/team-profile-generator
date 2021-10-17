@@ -7,7 +7,11 @@ Command-line tool that generates an HTML webpage to display summaries for each t
 
 A CLI to build up a team profile for you next software project. This tool runs on NodeJS with the ```npm start``` command. Follow the prompts and fill out your Team's information starting with your Team Lead. The use of Inquirer made this tool easy to implement, allowing the user to enter their own information. After you've finished entering new teammates info, the page generates a new fully-styled HTML containing your team's info, and quick links for email and GitHub. Use this tool when starting your next project to keep your team members top of mind!
 
-## Demo
+## Demo Video
+
+<div style="width:100%;height:0px;position:relative;padding-bottom:56.250%;"><iframe src="https://streamable.com/e/30zsc3" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+
+![vid](./video/TeamDemo.mp4)
 
 ## Installation and Usage
 
